@@ -5,3 +5,4 @@ use App\Http\Controllers\MyController;
 
 Route::get('/', [MyController::class, 'home'])->name('home');
 Route::get('/about', [MyController::class, 'about'])->name('about');
+Route::get('/slide', [MyController::class, 'slide'])->name('slide');
