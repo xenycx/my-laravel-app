@@ -41,7 +41,7 @@ class MyController extends Controller
                 'title' => 'პოსტი პირველი',
                 'content' => 'ეს არის აღწერა პირველი პოსტის',
                 'date' => '2025-04-01'
-            ],
+            ],     
             [
                 'id' => 2,
                 'title' => 'მეორე პოსტი',
@@ -55,7 +55,6 @@ class MyController extends Controller
                 'date' => '2025-04-03'
             ]
         ];
-
-        return view('slide', compact('slides', 'posts'));
+        return view('slide', compact('slides','posts'));
     }
 }
