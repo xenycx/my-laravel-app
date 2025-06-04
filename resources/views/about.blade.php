@@ -7,7 +7,9 @@
     <div style="display: flex; align-items: center; justify-content: center; margin-top: 20px;">
         <img src="https://institutes.gtu.ge/images/logos/1.png" style="width: 100px; margin-right: 20px;">
         <div>
-            <span>{{$mes}}</span>
+            @foreach($names as $name)
+                <span>{{ $name }}</span>
+            @endforeach
         </div>
     </div>
 @endsection

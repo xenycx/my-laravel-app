@@ -15,15 +15,33 @@
     </div>
 
     <div class="posts-container">
-        <h2>პოსტები</h2>
+        <div class="posts-header">
+            <h2>პოსტები</h2>
+            <div>
+                <a href="{{ route('posts.create') }}" class="btn-create">ახალი პოსტის შექმნა</a>
+                <a href="{{ route('posts.index') }}" class="btn-view-all">ყველა პოსტის ნახვა</a>
+            </div>
+        </div>
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="posts-grid">
-            @foreach($posts as $post)
+            @forelse($posts->take(3) as $post)
                 <div class="post-card">
-                    <h3>{{ $post['title'] }}</h3>
-                    <p>{{ $post['content'] }}</p>
-                    <small>თარიღი: {{ $post['date'] }}</small>
+                    @if($post->image)
+                        <img src="{{ $post->image }}" alt="{{ $post->title }}">
+                    @endif
+                    <h3>{{ $post->title }}</h3>
+                    <p>{{ $post->content }}</p>
+                    <small>თარიღი: {{ $post->created_at ? $post->created_at->format('Y-m-d H:i') : $post['date'] ?? 'N/A' }}</small>
                 </div>
-            @endforeach
+            @empty
+                <p>პოსტები არ არის.</p>
+            @endforelse
         </div>
     </div>
 
@@ -48,4 +66,38 @@
             slides[slideIndex].style.display = "block";
         }
     </script>
+
+    <style>
+        .posts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .btn-create, .btn-view-all {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+        .btn-create {
+            background-color: #28a745;
+        }
+        .post-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+    </style>
 @endsection

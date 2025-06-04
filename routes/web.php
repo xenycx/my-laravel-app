@@ -7,7 +7,17 @@ Route::get('/', [MyController::class, 'home'])->name('home');
 Route::get('/about', [MyController::class, 'about'])->name('about');
 Route::get('/slide', [MyController::class, 'slide'])->name('slide');
 
-// Examples of routes without using controllers
+
+Route::get('/posts', [MyController::class, 'posts'])->name('posts.index');
+Route::get('/posts/create', [MyController::class, 'create'])->name('posts.create');
+Route::post('/posts', [MyController::class, 'store'])->name('posts.store');
+
+
+
+
+
+
+
 // Route::get('/', function() {
 //     return view('home');  // Returns home.blade.php from resources/views
 // })->name('home');
